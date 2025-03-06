@@ -1,11 +1,17 @@
-import { Inter} from "next/font/google";
+// import { Inter} from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/header"
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 
-const inter = Inter({subsets: ["latin"]})
+import { DM_Sans } from 'next/font/google';
+
+const dmSans = DM_Sans({
+  subsets: ['latin'], // Choose subsets as per requirement
+  weight: ['400', '500', '700'], // Specify font weights you need
+  variable: '--font-dm-sans' // Optional: Custom CSS variable for easy usage
+});
 
 export const metadata = {
   title: "Coach AI - Career Coach",
@@ -21,7 +27,7 @@ export default function RootLayout({ children }) {
     }>
       <html lang="en" suppressHydrationWarning>
         <body
-          className={`${inter.className}`}
+          className={`${dmSans.className}`}
         >
           <ThemeProvider
             attribute="class"
@@ -35,10 +41,10 @@ export default function RootLayout({ children }) {
               {children}
             </main>
             {/* footer */}
-            <footer className=" border-t  py-8">
+            <footer className=" border-t py-6">
               <div className="container mx-auto px-4 text-center text-gray-200">
                 <p>2025 &copy; All rights reserved.</p>
-                <p className="text-[#F36B16]">Made with 💗 by Tushar Chandak</p>
+                <p className="text-[#00D8FF]">Made with 💗 by Tushar Chandak</p>
               </div>
             </footer>
           </ThemeProvider>
