@@ -1,28 +1,31 @@
-import React from 'react'
+"use client";
+import React, { useRef, useEffect } from 'react'
 import { Button } from './ui/button'
 import Link from 'next/link'
 import { ContainerScroll } from './ui/container-scroll-animation'
 import Image from 'next/image'
 import heroImage from "../public/hero.png";
 
-<Image
-  src={heroImage}
-  alt="hero"
-  height={720}
-  width={1400}
-  className="mx-auto rounded-2xl object-cover h-full object-left-top"
-  draggable={false}
-/>
-
-
 export default function HeroSection() {
+    const imageRef = useRef(null);
+    useEffect(() => {
+        const imageElement = imageRef.current;
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY;
+            const scrollThreshold = 100;
 
+            if (scrollPosition > scrollThreshold) {
+                imageElement.classList.add("scrolled")
+            }
+        }
+        window.addEventListener('scroll', handleScroll)
+    }, [])
 
     return (
-        <section className='w-full pt-36 md:pt-48 pb-10'>
+        <section className='w-full pt-36 md:pt-48 p-2 h-auto'>
             <div className='space-y-6 text-center'>
                 <div className='space-y-6 mx-auto'>
-                    <h1 className='text-5xl font-bold md:text-6xl lg:text-7xl xl:text-8xl gradient-title '>
+                    <h1 className='text-4xl font-bold md:text-6xl lg:text-7xl xl:text-8xl gradient-title '>
                         Your AI Career Coach For <br />Professional Success
                     </h1>
                     <p className='mx-auto max-w-[600px] text-muted-foreground md:text-2xl'>Advance your career with personalized guidance, interview prep, and AI-powered tools for job success</p>
@@ -39,6 +42,7 @@ export default function HeroSection() {
                         </Button>
                     </Link>
                 </div>
+
                 <div className="flex flex-col overflow-hidden">
                     <ContainerScroll
                         titleComponent={
@@ -46,7 +50,7 @@ export default function HeroSection() {
                                 <h1 className="text-4xl font-semibold text-black dark:text-white">
                                     Unleash the power of <br />
                                     <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
-                                        Scroll Animations
+                                        AI Coach
                                     </span>
                                 </h1>
                             </>
@@ -59,6 +63,7 @@ export default function HeroSection() {
                             width={1400}
                             className="mx-auto rounded-2xl object-cover h-full object-left-top"
                             draggable={false}
+                            priority
                         />
                     </ContainerScroll>
                 </div>
