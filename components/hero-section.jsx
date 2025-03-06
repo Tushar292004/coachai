@@ -1,26 +1,14 @@
 "use client";
-import React, { useRef, useEffect } from 'react'
 import { Button } from './ui/button'
 import Link from 'next/link'
 import { ContainerScroll } from './ui/container-scroll-animation'
 import Image from 'next/image'
 import heroImage from "../public/hero.png";
+import GradientText from '@/components/react-bits-ui/GradientText'
+
+
 
 export default function HeroSection() {
-    const imageRef = useRef(null);
-    useEffect(() => {
-        const imageElement = imageRef.current;
-        const handleScroll = () => {
-            const scrollPosition = window.scrollY;
-            const scrollThreshold = 100;
-
-            if (scrollPosition > scrollThreshold) {
-                imageElement.classList.add("scrolled")
-            }
-        }
-        window.addEventListener('scroll', handleScroll)
-    }, [])
-
     return (
         <section className='w-full pt-36 md:pt-48 p-2 h-auto'>
             <div className='space-y-6 text-center'>
@@ -47,11 +35,19 @@ export default function HeroSection() {
                     <ContainerScroll
                         titleComponent={
                             <>
-                                <h1 className="text-4xl font-semibold text-black dark:text-white">
+                                <h1 className="gradient-title text-4xl font-semibold">
                                     Unleash the power of <br />
-                                    <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
-                                        AI Coach
+                                    <span className="text-4xl md:text-[6rem] mt-1 leading-none">
+                                        <GradientText
+                                            colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+                                            animationSpeed={3}
+                                            showBorder={false}
+                                            className="custom-class"
+                                        >
+                                            AI Coach
+                                        </GradientText>
                                     </span>
+
                                 </h1>
                             </>
                         }
