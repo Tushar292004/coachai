@@ -14,7 +14,7 @@ function Header() {
                 <Link href="/" className='flex gap-2 items-center'>
                     <p className='text-2xl font-md'>Coach</p>
                     <RotatingText
-                        texts={['AI', 'MockTest', 'ResumeBuilder', 'CoverLetter']}
+                        texts={['AI', 'MockTest', 'Resume', 'CoverLetter']}
                         mainClassName="px-2 sm:px-2 md:px-3 bg-[#00D8FF] text-black font-semibold text-lg overflow-hidden justify-center rounded-lg"
                         staggerFrom={"last"}
                         initial={{ y: "100%" }}
