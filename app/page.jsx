@@ -9,8 +9,14 @@ import { BackgroundBeams } from "@/components/ui/background-beams";
 import { howItWorks } from "@/data/howItWorks";
 import { NeonGradientCard } from "@/components/magicui/neon-gradient-card";
 import { motion } from "framer-motion";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
 
   return (
     <div className="">
@@ -45,14 +51,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {features.map((feature, index) => {
               return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }} // Start hidden, slightly below
-                  whileInView={{ opacity: 1, y: 0 }} // Fade in & move up when visible
-                  viewport={{ once: false, amount: 0.2 }} // Trigger when 20% is visible
-                  transition={{ duration: 0.5, delay: index * 0.4 }} // Delay each card
-                  className="flex w-full"
-                >
+                <div data-aos="fade-up">
                   <SpotlightCard key={index} className="border-2 hover:border-[#00D8FF] transition-colors duration-300 flex items-center justify-center" spotlightColor="rgba(0, 229, 255, 0.2)">
                     <CardContent className="p-6 text-center">
                       <div className="flex flex-col items-center justify-center">
@@ -67,7 +66,7 @@ export default function Home() {
                     size={400}
                     className="from-transparent via-blue-500 to-transparent"  /> */}
                   </SpotlightCard>
-                </motion.div>
+                </div>
               )
             })}
           </div>
@@ -78,35 +77,27 @@ export default function Home() {
         <div className="absolute w-full inset-0 -z-10 ">
           <BackgroundBeams />
         </div>
-        <motion.div
-          initial={{ opacity: 0, y: 80 }} // Start invisible, move up
-          whileInView={{ opacity: 1, y: 0 }} // Fade in when in view
-          viewport={{ once: false }} // Runs only once
-          transition={{ duration: 0.8 }}
-          className="text-center"
-        >
-          <div className="container mx-auto px-4 md:px-6 flex items-center justify-center">
-            <div className="flex md:flex-row flex-col gap-6 justify-between items-center text-center w-[80%] mx-auto">
-              <div className="felx flex-col items-center justify-center space-y-2">
-                <h3 className="text-5xl font-bold gradient-title">50+</h3>
-                <p className="text-muted-foreground text-xl">Industries Covered</p>
-              </div>
-              <div className="felx flex-col items-center justify-center space-y-2">
-                <h3 className="text-5xl font-bold gradient-title">1000+</h3>
-                <p className="text-muted-foreground text-xl">Interview Question</p>
-              </div>
-              <div className="felx flex-col items-center justify-center space-y-2">
-                <h3 className="text-5xl font-bold gradient-title">95%</h3>
-                <p className="text-muted-foreground text-xl">Success Rate</p>
-              </div>
-              <div className="felx flex-col items-center justify-center space-y-2">
-                <h3 className="text-5xl font-bold gradient-title">24/7</h3>
-                <p className="text-muted-foreground text-xl">AI Support</p>
-              </div>
+        <div className="container mx-auto px-4 md:px-6 flex items-center justify-center">
+          <div className="flex md:flex-row flex-col gap-6 justify-between items-center text-center w-[80%] mx-auto">
+            <div data-aos="fade-up" className="felx flex-col items-center justify-center space-y-2">
+              <h3 className="text-5xl font-bold gradient-title">50+</h3>
+              <p className="text-muted-foreground text-xl">Industries Covered</p>
+            </div>
+
+            <div data-aos="fade-up" className="felx flex-col items-center justify-center space-y-2">
+              <h3 className="text-5xl font-bold gradient-title">1000+</h3>
+              <p className="text-muted-foreground text-xl">Interview Question</p>
+            </div>
+            <div data-aos="fade-up" className="felx flex-col items-center justify-center space-y-2">
+              <h3 className="text-5xl font-bold gradient-title">95%</h3>
+              <p className="text-muted-foreground text-xl">Success Rate</p>
+            </div>
+            <div data-aos="fade-up" className="felx flex-col items-center justify-center space-y-2">
+              <h3 className="text-5xl font-bold gradient-title">24/7</h3>
+              <p className="text-muted-foreground text-xl">AI Support</p>
             </div>
           </div>
-        </motion.div>
-
+        </div>
       </section>
 
       <section className="w-full py-12 bg-background">
@@ -125,20 +116,13 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6  mx-auto">
             {howItWorks.map((item, index) => {
               return (
-                <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }} // Start hidden, slightly below
-                whileInView={{ opacity: 1, y: 0 }} // Fade in & move up when visible
-                viewport={{ once: false, amount: 0.2 }} // Trigger when 20% is visible
-                transition={{ duration: 0.5, delay: index * 0.4 }} // Delay each card
-                className="flex"
-              >
-                <NeonGradientCard key={index} className="flex max-w-sm items-center justify-center text-center flex-col space-y-2">
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">{item.icon}</div>
-                  <h3 className="font-semibold text-xl">{item.title}</h3>
-                  <p className="text-muted-foreground">{item.description}</p>
-                </NeonGradientCard>
-                </motion.div>
+                <div data-aos="fade-up">
+                  <NeonGradientCard key={index} className="flex max-w-sm items-center justify-center text-center flex-col space-y-2">
+                    <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">{item.icon}</div>
+                    <h3 className="font-semibold text-xl">{item.title}</h3>
+                    <p className="text-muted-foreground">{item.description}</p>
+                  </NeonGradientCard>
+                </div>
               );
             })}
           </div>
