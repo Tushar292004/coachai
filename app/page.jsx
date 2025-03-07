@@ -6,7 +6,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import SpotlightCard from "@/components/react-bits-ui/SpotLightCard"
 import GradientText from "@/components/react-bits-ui/GradientText";
 import { BackgroundBeams } from "@/components/ui/background-beams";
+import { AnimatedTestimonials } from "@/components/ui/animated-testimonials"
+import { WavyBackground } from "@/components/ui/wavy-background";
 import { howItWorks } from "@/data/howItWorks";
+import { testimonial } from "@/data/testimonial";
 import { NeonGradientCard } from "@/components/magicui/neon-gradient-card";
 import { motion } from "framer-motion";
 import AOS from "aos";
@@ -30,7 +33,7 @@ export default function Home() {
       </div>
       <HeroSection />
 
-      <section className="w-full pb-12 bg-background">
+      <section className="w-full pb-12 bg-background ">
         <div className="container mx-auto px-4 md:px-6">
           <h2 className="text-4xl font-bold tracking-tighter text-center mb-12 gradient-title">
             <motion.div
@@ -51,7 +54,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {features.map((feature, index) => {
               return (
-                <div data-aos="fade-up" className="flex h-full"> 
+                <div data-aos="fade-up" className="flex h-full">
                   <SpotlightCard key={index} className="border-2 hover:border-[#00D8FF] transition-colors duration-300 flex items-center justify-center" spotlightColor="rgba(0, 229, 255, 0.2)">
                     <CardContent className="p-6 text-center">
                       <div className="flex flex-col items-center justify-center">
@@ -127,6 +130,31 @@ export default function Home() {
             })}
           </div>
         </div>
+
+        <div className="container mx-auto px-4 md:px-6 py-14 mt-4">
+          <WavyBackground>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }} // Start invisible, move up
+              whileInView={{ opacity: 1, y: 0 }} // Fade in when in view
+              viewport={{ once: false }} // Runs only once
+              transition={{ duration: 0.8 }}
+              className="text-center"
+            >
+
+              <h2 className="text-4xl font-bold tracking-tighter text-center mb-12 gradient-title">
+
+                <GradientText
+                  colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+                  animationSpeed={3}
+                  showBorder={false}
+                  className="custom-class overflow-visible"
+                >What Our Users Say</GradientText>
+
+              </h2>
+              <AnimatedTestimonials testimonials={testimonial} />
+            </motion.div>
+            </WavyBackground>
+          </div>
       </section>
 
     </div>

@@ -42,9 +42,9 @@ export default function RootLayout({ children }) {
             </main>
             {/* footer */}
             <footer className=" border-t py-6">
-              <div className="container mx-auto px-4 text-center text-gray-200">
+              <div className="container mx-auto px-4 text-center text-gray-200 font-medium">
                 <p>2025 &copy; All rights reserved.</p>
-                <p className="text-[#00D8FF]">Made with 💗 by Tushar Chandak</p>
+                <p className="text-[#00D8FF]">Made with 🤍 by Tushar Chandak</p>
               </div>
             </footer>
           </ThemeProvider>
