@@ -51,7 +51,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {features.map((feature, index) => {
               return (
-                <div data-aos="fade-up">
+                <div data-aos="fade-up" className="flex h-full"> 
                   <SpotlightCard key={index} className="border-2 hover:border-[#00D8FF] transition-colors duration-300 flex items-center justify-center" spotlightColor="rgba(0, 229, 255, 0.2)">
                     <CardContent className="p-6 text-center">
                       <div className="flex flex-col items-center justify-center">
