@@ -18,6 +18,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import { faqs } from "@/data/faqs";
+import Link from "next/link";
+import { RippleButton } from "@/components/magicui/ripple-button";
 
 export default function Home() {
   useEffect(() => {
@@ -222,23 +224,36 @@ export default function Home() {
       </section>
 
       <section className="w-full pt-6 bg-background">
-        <div className="mx-auto relative w-full h-[40vh] ">
-          <div className="absolute inset-0 z-0">
-            <Iridescence
-              color={[0, 0.7, 0.7]}
-              mouseReact={false}
-              amplitude={0.1}
-              speed={1.0}
-            />
-          </div>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }} // Start invisible, move up
+          whileInView={{ opacity: 1, y: 0 }} // Fade in when in view
+          viewport={{ once: false }} // Runs only once
+          transition={{ duration: 0.8 }}
+          className="text-center"
+        >
+          <div className="mx-auto relative w-full h-[40vh]">
+            <div className="absolute inset-0 z-0">
+              <Iridescence
+                color={[0, 0.7, 0.7]}
+                mouseReact={false}
+                amplitude={0.1}
+                speed={1.0}
+              />
+            </div>
 
-          <div className="p-4 absolute inset-0 flex flex-col items-center text-center justify-center z-10 ">
-            <h1 className="text-white text-4xl font-bold">Ready to Accelerate Your Career ?</h1>
-            <p className="mx-auto text-xl  text-primary">
-              Join thousands of professionals who are advancing their careers
-            </p>
+            <div className="p-4 absolute inset-0 flex flex-col items-center text-center justify-center z-10 ">
+              <h1 className="text-white text-4xl font-bold">Ready to Accelerate Your Career ?</h1>
+              <p className="mx-auto text-xl  text-primary">
+                Join thousands of professionals who are advancing their careers
+              </p>
+              <Link href="">
+                <RippleButton className="mt-3 text-lg font-medium hover:bg-white/70 bg-white border-none text-secondary">
+                  Start Journey Today
+                </RippleButton>
+              </Link>
+            </div>
           </div>
-        </div>
+          </motion.div>
       </section>
     </div>
   );
