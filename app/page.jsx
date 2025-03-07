@@ -3,6 +3,7 @@ import Aurora from "@/components/react-bits-ui/Aurora";
 import HeroSection from "@/components/hero-section";
 import { features } from "@/data/features";
 import { Card, CardContent } from "@/components/ui/card";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import SpotlightCard from "@/components/react-bits-ui/SpotLightCard"
 import GradientText from "@/components/react-bits-ui/GradientText";
 import { BackgroundBeams } from "@/components/ui/background-beams";
@@ -11,9 +12,12 @@ import { howItWorks } from "@/data/howItWorks";
 import { testimonial } from "@/data/testimonial";
 import { NeonGradientCard } from "@/components/magicui/neon-gradient-card";
 import { motion } from "framer-motion";
+import ClickSpark from "@/components/react-bits-ui/ClickSpark"
+import Iridescence from "@/components/react-bits-ui/RideScene"
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import { faqs } from "@/data/faqs";
 
 export default function Home() {
   useEffect(() => {
@@ -38,7 +42,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 50 }} // Start invisible, move up
               whileInView={{ opacity: 1, y: 0 }} // Fade in when in view
-              viewport={{ once: true }} // Runs only once
+              viewport={{ once: false }} // Runs only once
               transition={{ duration: 0.8 }}
               className="text-center"
             >
@@ -102,18 +106,26 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full py-12 bg-background">
+      <section className="w-full pt-12 bg-background">
         <div className="container mx-auto px-4 md:px-6  flex flex-col items-center justify-between">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-4xl font-bold mb-4">
-              <GradientText
-                colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-                animationSpeed={3}
-                showBorder={false}
-                className="custom-class overflow-visible"
-              >How It Works</GradientText>
-            </h2>
-            <p className="text-muted-foreground text-xl">Four simple steps to accelerate your carrer growth</p>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }} // Start invisible, move up
+              whileInView={{ opacity: 1, y: 0 }} // Fade in when in view
+              viewport={{ once: false }} // Runs only once
+              transition={{ duration: 0.8 }}
+              className="text-center"
+            >
+              <h2 className="text-4xl font-bold mb-4">
+                <GradientText
+                  colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+                  animationSpeed={3}
+                  showBorder={false}
+                  className="custom-class overflow-visible"
+                >How It Works</GradientText>
+              </h2>
+              <p className="text-muted-foreground text-xl">Four simple steps to accelerate your carrer growth</p>
+            </motion.div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6  mx-auto">
             {howItWorks.map((item, index) => {
@@ -131,6 +143,38 @@ export default function Home() {
         </div>
 
         <div className="container mx-auto px-4 md:px-6 py-14 mt-4">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }} // Start invisible, move up
+            whileInView={{ opacity: 1, y: 0 }} // Fade in when in view
+            viewport={{ once: false }} // Runs only once
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
+
+            <h2 className="text-4xl font-bold tracking-tighter text-center mb-12 gradient-title">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }} // Start invisible, move up
+                whileInView={{ opacity: 1, y: 0 }} // Fade in when in view
+                viewport={{ once: false }} // Runs only once
+                transition={{ duration: 0.8 }}
+                className="text-center"
+              >
+                <GradientText
+                  colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+                  animationSpeed={3}
+                  showBorder={false}
+                  className="custom-class overflow-visible"
+                >What Our Users Say</GradientText>
+              </motion.div>
+            </h2>
+            <AnimatedTestimonials testimonials={testimonial} />
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="w-full py-12 bg-background">
+        <div className="container mx-auto px-6">
+          <div className="text-center mx-auto mb-6">
             <motion.div
               initial={{ opacity: 0, y: 50 }} // Start invisible, move up
               whileInView={{ opacity: 1, y: 0 }} // Fade in when in view
@@ -138,22 +182,64 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               className="text-center"
             >
-
-              <h2 className="text-4xl font-bold tracking-tighter text-center mb-12 gradient-title">
+              <h2 className="text-4xl font-bold mb-4">
 
                 <GradientText
                   colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
                   animationSpeed={3}
                   showBorder={false}
                   className="custom-class overflow-visible"
-                >What Our Users Say</GradientText>
-
+                >Frequently Asked Questions</GradientText>
               </h2>
-              <AnimatedTestimonials testimonials={testimonial} />
+              <p className="text-muted-foreground text-xl">Find answers to common questions about our platform</p>
             </motion.div>
           </div>
+          <div className="mx-auto max-w-6xl">
+            <ClickSpark
+              sparkColor='#fff'
+              sparkSize={10}
+              sparkRadius={15}
+              sparkCount={8}
+              duration={400}
+            >
+              <Accordion type="single" collapsible>
+                {faqs.map((faq, index) => {
+                  return (
+                    <div data-aos="fade-up">
+                      <AccordionItem key={index} value={`item-${index}`}>
+                        <AccordionTrigger className={"text-xl font-thin text-slate-200"} >{faq.question}</AccordionTrigger>
+                        <AccordionContent>
+                          {faq.answer}
+                        </AccordionContent>
+                      </AccordionItem>
+                    </div>
+                  );
+                })}
+              </Accordion>
+            </ClickSpark>
+          </div>
+        </div>
       </section>
 
+      <section className="w-full pt-6 bg-background">
+        <div className="mx-auto relative w-full h-[40vh] ">
+          <div className="absolute inset-0 z-0">
+            <Iridescence
+              color={[0, 0.7, 0.7]}
+              mouseReact={false}
+              amplitude={0.1}
+              speed={1.0}
+            />
+          </div>
+
+          <div className="p-4 absolute inset-0 flex flex-col items-center text-center justify-center z-10 ">
+            <h1 className="text-white text-4xl font-bold">Ready to Accelerate Your Career ?</h1>
+            <p className="mx-auto text-xl  text-primary">
+              Join thousands of professionals who are advancing their careers
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
