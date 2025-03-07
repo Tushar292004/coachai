@@ -7,7 +7,6 @@ import SpotlightCard from "@/components/react-bits-ui/SpotLightCard"
 import GradientText from "@/components/react-bits-ui/GradientText";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials"
-import { WavyBackground } from "@/components/ui/wavy-background";
 import { howItWorks } from "@/data/howItWorks";
 import { testimonial } from "@/data/testimonial";
 import { NeonGradientCard } from "@/components/magicui/neon-gradient-card";
@@ -132,7 +131,6 @@ export default function Home() {
         </div>
 
         <div className="container mx-auto px-4 md:px-6 py-14 mt-4">
-          <WavyBackground>
             <motion.div
               initial={{ opacity: 0, y: 50 }} // Start invisible, move up
               whileInView={{ opacity: 1, y: 0 }} // Fade in when in view
@@ -153,7 +151,6 @@ export default function Home() {
               </h2>
               <AnimatedTestimonials testimonials={testimonial} />
             </motion.div>
-            </WavyBackground>
           </div>
       </section>
 
