@@ -31,7 +31,7 @@ export default function HeroSection() {
                     </Link>
                 </div>
 
-                <div className="flex flex-col overflow-hidden">
+                <div className="flex flex-col overflow-hidden pt-10">
                     <ContainerScroll
                         titleComponent={
                             <>
@@ -42,7 +42,7 @@ export default function HeroSection() {
                                             colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
                                             animationSpeed={3}
                                             showBorder={false}
-                                            className="custom-class"
+                                            className="custom-class overflow-visible"
                                         >
                                             AI Coach
                                         </GradientText>
