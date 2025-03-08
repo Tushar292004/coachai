@@ -99,6 +99,7 @@ export default function Home() {
   return (
     <div className="" ref={scrollRef}>
       <div className="grid-background"></div>
+      {/* <div className="aurora-bg"></div> */}
 
       <div className="absolute inset-0 -z-10">
         <Aurora 

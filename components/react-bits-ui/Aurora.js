@@ -125,83 +125,98 @@ export default function Aurora(props) {
     const ctn = ctnDom.current;
     if (!ctn) return;
 
+    // Create renderer
     const renderer = new Renderer({
       alpha: true,
       premultipliedAlpha: true,
-      antialias: true
+      antialias: true,
+      canvas: document.createElement("canvas")
     });
+    
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
-    gl.canvas.style.backgroundColor = 'transparent';
-
-    let program;
-
-    function resize() {
-      if (!ctn) return;
-      const width = ctn.offsetWidth;
-      const height = ctn.offsetHeight;
-      renderer.setSize(width, height);
-      if (program) {
-        program.uniforms.uResolution.value = [width, height];
-      }
-    }
-    window.addEventListener("resize", resize);
-
+    
+    // Create geometry, program, and mesh
     const geometry = new Triangle(gl);
-    if (geometry.attributes.uv) {
-      delete geometry.attributes.uv;
-    }
-
+    
+    // Convert color strings to RGB array
     const colorStopsArray = colorStops.map((hex) => {
       const c = new Color(hex);
       return [c.r, c.g, c.b];
     });
-
-    program = new Program(gl, {
+    
+    const program = new Program(gl, {
       vertex: VERT,
       fragment: FRAG,
       uniforms: {
         uTime: { value: 0 },
         uAmplitude: { value: amplitude },
         uColorStops: { value: colorStopsArray },
-        uResolution: { value: [ctn.offsetWidth, ctn.offsetHeight] },
+        uResolution: { value: [100, 100] }, // Default size, will be updated
         uBlend: { value: blend }
       }
     });
-
+    
     const mesh = new Mesh(gl, { geometry, program });
+    
+    // Handle resize
+    const resize = () => {
+      if (!ctn) return;
+      const width = ctn.offsetWidth;
+      const height = ctn.offsetHeight;
+      
+      if (width === 0 || height === 0) return;
+      
+      renderer.setSize(width, height);
+      program.uniforms.uResolution.value = [width, height];
+    };
+    
+    window.addEventListener("resize", resize);
+    resize(); // Initial sizing
+    
+    // Append canvas to container
+    gl.canvas.style.width = '100%';
+    gl.canvas.style.height = '100%';
+    gl.canvas.style.position = 'absolute';
+    gl.canvas.style.top = '0';
+    gl.canvas.style.left = '0';
     ctn.appendChild(gl.canvas);
-
+    
+    // Animation loop
     let animateId = 0;
     const update = (t) => {
       animateId = requestAnimationFrame(update);
+      
       const { time = t * 0.01, speed = 1.0 } = propsRef.current;
       program.uniforms.uTime.value = time * speed * 0.1;
-      program.uniforms.uAmplitude.value = propsRef.current.amplitude ?? 1.0;
+      program.uniforms.uAmplitude.value = propsRef.current.amplitude ?? amplitude;
       program.uniforms.uBlend.value = propsRef.current.blend ?? blend;
-      const stops = propsRef.current.colorStops ?? colorStops;
-      program.uniforms.uColorStops.value = stops.map((hex) => {
-        const c = new Color(hex);
-        return [c.r, c.g, c.b];
-      });
+      
       renderer.render({ scene: mesh });
     };
+    
     animateId = requestAnimationFrame(update);
-
-    resize();
-
+    
+    // Cleanup
     return () => {
       cancelAnimationFrame(animateId);
       window.removeEventListener("resize", resize);
+      
       if (ctn && gl.canvas.parentNode === ctn) {
         ctn.removeChild(gl.canvas);
       }
+      
       gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [amplitude]);
+  }, [amplitude, colorStops, blend]);
 
-  return <div ref={ctnDom} className="w-full h-full" />;
+  return (
+    <div 
+      ref={ctnDom} 
+      className="w-full h-full relative" 
+      style={{ minHeight: '200px' }}
+    />
+  );
 }
