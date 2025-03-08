@@ -82,9 +82,9 @@ export default function Home() {
       </section>
 
       <section className="relative rounded-md antialiased w-full py-12 md:py-24  overflow-hidden" >
-        <div className="absolute w-full inset-0 -z-10 ">
+        {/* <div className="absolute w-full inset-0 -z-10 ">
           <BackgroundBeams />
-        </div>
+        </div> */}
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-center">
           <div className="flex md:flex-row flex-col gap-6 justify-between items-center text-center w-[80%] mx-auto">
             <div data-aos="fade-up" className="felx flex-col items-center justify-center space-y-2">
