@@ -35,7 +35,7 @@ const HeroSection = () => {
     }, []);
 
     return (
-        <section className="w-full pt-36 md:pt-48 pb-10">
+        <section className="w-full pt-36 md:pt-48 pb-10 bg-transparent">
             <div className="text-center">
                 <motion.div
                     initial={{ opacity: 0, y: 50 }} // Hidden at first
