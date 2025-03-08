@@ -45,7 +45,7 @@ const HeroSection = () => {
                     className="text-center"
                 >
                     <div className='space-y-6 mx-auto'>
-                        <h1 className='text-3xl font-bold md:text-6xl lg:text-7xl xl:text-8xl gradient-title '>
+                        <h1 className='text-3xl font-bold md:text-6xl lg:text-7xl xl:text-8xl '>
                             Your AI Career Coach For <br />Professional Success
                         </h1>
                         <p className='mx-auto max-w-[600px] text-muted-foreground md:text-2xl'>Advance your career with personalized guidance, interview prep, and AI-powered tools for job success</p>
