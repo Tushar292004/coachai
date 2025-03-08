@@ -101,7 +101,7 @@ export default function Home() {
       {/* <div className="grid-background"></div> */}
       {/* <div className="aurora-bg"></div> */}
 
-      <div className="absolute inset-0 -z-10">
+      {/* <div className="absolute inset-0 -z-10">
         <Aurora 
           priority
           colorStops={["#00D8FF", "#16567E", "#00D8FF"]}
@@ -109,7 +109,7 @@ export default function Home() {
           amplitude={2} // Reduced animation complexity on mobile
           speed={0.5} // Slower animation on mobile
         />
-      </div>
+      </div> */}
 
       {/* Progress Bar - Fixed at top */}
       <motion.div
@@ -117,8 +117,14 @@ export default function Home() {
         style={{ scaleX, transformOrigin: "0%" }}
       />
 
-      {/* Home Section */}
-      <HeroSection />
+      <div class="aurora-container">
+        <div class="aurora-blob"></div>
+        <div class="aurora-blob-2"></div>
+        <div class="aurora-content">
+          {/* Home Section */}
+          <HeroSection />
+        </div>
+      </div>
 
       {/* Feature Section */}
       <section className="w-full py-12" id="features">
@@ -159,9 +165,9 @@ export default function Home() {
             })}
           </div>
         </div>
-          
+
         {/* Statstic Section */}
-        <div className="container mx-auto px-4 md:px-6 flex items-center justify-center py-12  mt-12 bg-muted/50">
+        <div className="container mx-auto px-4 md:px-6 flex items-center justify-center py-12  mt-12 ">
           <div className="flex md:flex-row flex-col gap-6 justify-between items-center text-center w-[80%] mx-auto">
             <div data-aos="fade-up" data-aos-delay="100" data-aos-duration={isMobile ? 400 : 700} className="flex flex-col items-center justify-center space-y-2">
               <h3 className="text-5xl font-bold gradient-title">50+</h3>
@@ -240,7 +246,7 @@ export default function Home() {
               >What Our Users Say</GradientText>
             </motion.div>
           </h2>
-          <AnimatedTestimonials testimonials={testimonial}  />
+          <AnimatedTestimonials testimonials={testimonial} />
         </div>
       </section>
 
@@ -295,7 +301,7 @@ export default function Home() {
       </section>
 
       {/* Start your journey section */}
-      <section className="w-full pt-6 bg-background"  id="start-journey">
+      <section className="w-full pt-6 bg-background" id="start-journey">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
