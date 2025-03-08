@@ -98,6 +98,18 @@ export default function Home() {
 
   return (
     <div className="" ref={scrollRef}>
+      <div className="grid-background"></div>
+
+      <div className="absolute inset-0 -z-10">
+        <Aurora 
+          priority
+          colorStops={["#00D8FF", "#16567E", "#00D8FF"]}
+          blend={1}
+          amplitude={2} // Reduced animation complexity on mobile
+          speed={0.5} // Slower animation on mobile
+        />
+      </div>
+
       {/* Progress Bar - Fixed at top */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 z-50"
@@ -105,19 +117,10 @@ export default function Home() {
       />
 
       {/* Home Section */}
-      <div className="absolute inset-0 -z-10">
-        <Aurora 
-          priority
-          colorStops={["#00D8FF", "#16567E", "#00D8FF"]}
-          blend={1}
-          amplitude={isMobile ? 1 : 2} // Reduced animation complexity on mobile
-          speed={isMobile ? 0.3 : 0.5} // Slower animation on mobile
-        />
-      </div>
       <HeroSection />
 
       {/* Feature Section */}
-      <section className="w-full pb-12 bg-background" id="features">
+      <section className="w-full py-12 bg-background" id="features">
         <div className="container mx-auto px-4 md:px-6 mb-12">
           <h2 className="text-4xl font-bold tracking-tighter text-center mb-12 gradient-title">
             <motion.div
@@ -157,7 +160,7 @@ export default function Home() {
         </div>
           
         {/* Statstic Section */}
-        <div className="container mx-auto px-4 md:px-6 flex items-center justify-center py-12  mt-12">
+        <div className="container mx-auto px-4 md:px-6 flex items-center justify-center py-12  mt-12 bg-muted/50">
           <div className="flex md:flex-row flex-col gap-6 justify-between items-center text-center w-[80%] mx-auto">
             <div data-aos="fade-up" data-aos-delay="100" data-aos-duration={isMobile ? 400 : 700} className="flex flex-col items-center justify-center space-y-2">
               <h3 className="text-5xl font-bold gradient-title">50+</h3>
@@ -236,7 +239,7 @@ export default function Home() {
               >What Our Users Say</GradientText>
             </motion.div>
           </h2>
-          <AnimatedTestimonials testimonials={testimonial} />
+          <AnimatedTestimonials testimonials={testimonial}  />
         </div>
       </section>
 
