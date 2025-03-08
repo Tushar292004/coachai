@@ -87,20 +87,20 @@ export default function Home() {
         </div> */}
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-center">
           <div className="flex md:flex-row flex-col gap-6 justify-between items-center text-center w-[80%] mx-auto">
-            <div data-aos="fade-up" className="felx flex-col items-center justify-center space-y-2">
+            <div className="felx flex-col items-center justify-center space-y-2">
               <h3 className="text-5xl font-bold gradient-title">50+</h3>
               <p className="text-muted-foreground text-xl">Industries Covered</p>
             </div>
 
-            <div data-aos="fade-up" className="felx flex-col items-center justify-center space-y-2">
+            <div className="felx flex-col items-center justify-center space-y-2">
               <h3 className="text-5xl font-bold gradient-title">1000+</h3>
               <p className="text-muted-foreground text-xl">Interview Question</p>
             </div>
-            <div data-aos="fade-up" className="felx flex-col items-center justify-center space-y-2">
+            <div className="felx flex-col items-center justify-center space-y-2">
               <h3 className="text-5xl font-bold gradient-title">95%</h3>
               <p className="text-muted-foreground text-xl">Success Rate</p>
             </div>
-            <div data-aos="fade-up" className="felx flex-col items-center justify-center space-y-2">
+            <div className="felx flex-col items-center justify-center space-y-2">
               <h3 className="text-5xl font-bold gradient-title">24/7</h3>
               <p className="text-muted-foreground text-xl">AI Support</p>
             </div>
