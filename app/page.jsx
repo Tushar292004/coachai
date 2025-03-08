@@ -2,7 +2,7 @@
 import Aurora from "@/components/react-bits-ui/Aurora";
 import HeroSection from "@/components/hero-section";
 import { features } from "@/data/features";
-import { Card, CardContent } from "@/components/ui/card";
+import { CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import SpotlightCard from "@/components/react-bits-ui/SpotLightCard"
 import GradientText from "@/components/react-bits-ui/GradientText";
