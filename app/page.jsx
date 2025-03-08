@@ -98,7 +98,7 @@ export default function Home() {
 
   return (
     <div className="" ref={scrollRef}>
-      <div className="grid-background"></div>
+      {/* <div className="grid-background"></div> */}
       {/* <div className="aurora-bg"></div> */}
 
       <div className="absolute inset-0 -z-10">
@@ -121,7 +121,7 @@ export default function Home() {
       <HeroSection />
 
       {/* Feature Section */}
-      <section className="w-full py-12 bg-background" id="features">
+      <section className="w-full py-12" id="features">
         <div className="container mx-auto px-4 md:px-6 mb-12">
           <h2 className="text-4xl font-bold tracking-tighter text-center mb-12 gradient-title">
             <motion.div
