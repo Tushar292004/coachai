@@ -11,23 +11,81 @@ import { AnimatedTestimonials } from "@/components/ui/animated-testimonials"
 import { howItWorks } from "@/data/howItWorks";
 import { testimonial } from "@/data/testimonial";
 import { NeonGradientCard } from "@/components/magicui/neon-gradient-card";
-import { motion } from "framer-motion";
+import { motion, useScroll, useSpring } from "framer-motion";
 import ClickSpark from "@/components/react-bits-ui/ClickSpark"
 import Iridescence from "@/components/react-bits-ui/RideScene"
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { faqs } from "@/data/faqs";
 import Link from "next/link";
 import { RippleButton } from "@/components/magicui/ripple-button";
+import Lenis from '@studio-freight/lenis';
 
 export default function Home() {
+  const scrollRef = useRef(null);
+
   useEffect(() => {
-    AOS.init({ duration: 1000 });
+    // Initialize AOS
+    AOS.init({ 
+      duration: 1000,
+      once: false,
+      mirror: true,
+      offset: 50
+    });
+
+    // Initialize Lenis for smooth scrolling
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smooth: true,
+      mouseMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    
+    requestAnimationFrame(raf);
+
+    // Scroll to hash on load
+    const { hash } = window.location;
+    if (hash) {
+      const element = document.querySelector(hash);
+      if (element) {
+        lenis.scrollTo(element);
+      }
+    }
+
+    // Clean up
+    return () => {
+      lenis.destroy();
+    };
   }, []);
 
+  // Progress bar for scroll
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   return (
-    <div className="">
+    <div className="" ref={scrollRef}>
+      {/* Progress Bar - Fixed at top */}
+      <motion.div 
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 z-50" 
+        style={{ scaleX, transformOrigin: "0%" }}
+      />
+
+      {/* Home Section */}
       <div className="absolute inset-0 -z-10">
         <Aurora
           colorStops={["#00D8FF", "#16567E", "#00D8FF"]}
@@ -38,13 +96,14 @@ export default function Home() {
       </div>
       <HeroSection />
 
-      <section className="w-full pb-12 bg-background ">
+      {/* Feature Section */}
+      <section className="w-full pb-12 bg-background">
         <div className="container mx-auto px-4 md:px-6">
           <h2 className="text-4xl font-bold tracking-tighter text-center mb-12 gradient-title">
             <motion.div
-              initial={{ opacity: 0, y: 50 }} // Start invisible, move up
-              whileInView={{ opacity: 1, y: 0 }} // Fade in when in view
-              viewport={{ once: false }} // Runs only once
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
               transition={{ duration: 0.8 }}
               className="text-center"
             >
@@ -59,8 +118,8 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {features.map((feature, index) => {
               return (
-                <div data-aos="fade-up" className="flex h-full">
-                  <SpotlightCard key={index} className="border-2 hover:border-[#00D8FF] transition-colors duration-300 flex items-center justify-center" spotlightColor="rgba(0, 229, 255, 0.2)">
+                <div data-aos="fade-up" data-aos-delay={index * 100} className="flex h-full" key={index}>
+                  <SpotlightCard className="border-2 hover:border-[#00D8FF] transition-colors duration-300 flex items-center justify-center" spotlightColor="rgba(0, 229, 255, 0.2)">
                     <CardContent className="p-6 text-center">
                       <div className="flex flex-col items-center justify-center">
                         {feature.icon}
@@ -68,11 +127,6 @@ export default function Home() {
                         <p className="text-muted-foreground">{feature.description}</p>
                       </div>
                     </CardContent>
-                    {/* <BorderBeam
-                    duration={6}
-                    delay={3}
-                    size={400}
-                    className="from-transparent via-blue-500 to-transparent"  /> */}
                   </SpotlightCard>
                 </div>
               )
@@ -81,26 +135,24 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative rounded-md antialiased w-full py-12 md:py-24  overflow-hidden" >
-        {/* <div className="absolute w-full inset-0 -z-10 ">
-          <BackgroundBeams />
-        </div> */}
+      {/* Statstic Section */}
+      <section className="relative rounded-md antialiased w-full py-12 md:py-24 overflow-hidden">
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-center">
           <div className="flex md:flex-row flex-col gap-6 justify-between items-center text-center w-[80%] mx-auto">
-            <div className="felx flex-col items-center justify-center space-y-2">
+            <div data-aos="fade-up" data-aos-delay="100" className="flex flex-col items-center justify-center space-y-2">
               <h3 className="text-5xl font-bold gradient-title">50+</h3>
               <p className="text-muted-foreground text-xl">Industries Covered</p>
             </div>
 
-            <div className="felx flex-col items-center justify-center space-y-2">
+            <div data-aos="fade-up" data-aos-delay="200" className="flex flex-col items-center justify-center space-y-2">
               <h3 className="text-5xl font-bold gradient-title">1000+</h3>
               <p className="text-muted-foreground text-xl">Interview Question</p>
             </div>
-            <div className="felx flex-col items-center justify-center space-y-2">
+            <div data-aos="fade-up" data-aos-delay="300" className="flex flex-col items-center justify-center space-y-2">
               <h3 className="text-5xl font-bold gradient-title">95%</h3>
               <p className="text-muted-foreground text-xl">Success Rate</p>
             </div>
-            <div className="felx flex-col items-center justify-center space-y-2">
+            <div data-aos="fade-up" data-aos-delay="400" className="flex flex-col items-center justify-center space-y-2">
               <h3 className="text-5xl font-bold gradient-title">24/7</h3>
               <p className="text-muted-foreground text-xl">AI Support</p>
             </div>
@@ -108,13 +160,14 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Working Section */}
       <section className="w-full pt-12 bg-background">
-        <div className="container mx-auto px-4 md:px-6  flex flex-col items-center justify-between">
+        <div className="container mx-auto px-4 md:px-6 flex flex-col items-center justify-between">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <motion.div
-              initial={{ opacity: 0, y: 50 }} // Start invisible, move up
-              whileInView={{ opacity: 1, y: 0 }} // Fade in when in view
-              viewport={{ once: false }} // Runs only once
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
               transition={{ duration: 0.8 }}
               className="text-center"
             >
@@ -126,14 +179,14 @@ export default function Home() {
                   className="custom-class overflow-visible"
                 >How It Works</GradientText>
               </h2>
-              <p className="text-muted-foreground text-xl">Four simple steps to accelerate your carrer growth</p>
+              <p className="text-muted-foreground text-xl">Four simple steps to accelerate your career growth</p>
             </motion.div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6  mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto">
             {howItWorks.map((item, index) => {
               return (
-                <div data-aos="fade-up">
-                  <NeonGradientCard key={index} className="flex max-w-sm items-center justify-center text-center flex-col space-y-2">
+                <div data-aos="fade-up" data-aos-delay={index * 100} key={index}>
+                  <NeonGradientCard className="flex max-w-sm items-center justify-center text-center flex-col space-y-2">
                     <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">{item.icon}</div>
                     <h3 className="font-semibold text-xl">{item.title}</h3>
                     <p className="text-muted-foreground">{item.description}</p>
@@ -144,20 +197,20 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Testimonals Section */}
         <div className="container mx-auto px-4 md:px-6 py-14 mt-4">
           <motion.div
-            initial={{ opacity: 0, y: 50 }} // Start invisible, move up
-            whileInView={{ opacity: 1, y: 0 }} // Fade in when in view
-            viewport={{ once: false }} // Runs only once
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-
             <h2 className="text-4xl font-bold tracking-tighter text-center mb-12 gradient-title">
               <motion.div
-                initial={{ opacity: 0, y: 50 }} // Start invisible, move up
-                whileInView={{ opacity: 1, y: 0 }} // Fade in when in view
-                viewport={{ once: false }} // Runs only once
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
                 transition={{ duration: 0.8 }}
                 className="text-center"
               >
@@ -174,18 +227,18 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FAQ Section */}
       <section className="w-full py-12 bg-background">
         <div className="container mx-auto px-6">
           <div className="text-center mx-auto mb-6">
             <motion.div
-              initial={{ opacity: 0, y: 50 }} // Start invisible, move up
-              whileInView={{ opacity: 1, y: 0 }} // Fade in when in view
-              viewport={{ once: false }} // Runs only once
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
               transition={{ duration: 0.8 }}
               className="text-center"
             >
               <h2 className="text-4xl font-bold mb-4">
-
                 <GradientText
                   colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
                   animationSpeed={3}
@@ -207,9 +260,9 @@ export default function Home() {
               <Accordion type="single" collapsible>
                 {faqs.map((faq, index) => {
                   return (
-                    <div data-aos="fade-up">
-                      <AccordionItem key={index} value={`item-${index}`}>
-                        <AccordionTrigger className={"text-xl font-thin text-slate-200"} >{faq.question}</AccordionTrigger>
+                    <div data-aos="fade-up" data-aos-delay={index * 50} key={index}>
+                      <AccordionItem value={`item-${index}`}>
+                        <AccordionTrigger className={"text-xl font-thin text-slate-200"}>{faq.question}</AccordionTrigger>
                         <AccordionContent>
                           {faq.answer}
                         </AccordionContent>
@@ -223,11 +276,12 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Start your journey section */}
       <section className="w-full pt-6 bg-background">
         <motion.div
-          initial={{ opacity: 0, y: 50 }} // Start invisible, move up
-          whileInView={{ opacity: 1, y: 0 }} // Fade in when in view
-          viewport={{ once: false }} // Runs only once
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
           transition={{ duration: 0.8 }}
           className="text-center"
         >
@@ -241,9 +295,9 @@ export default function Home() {
               />
             </div>
 
-            <div className="p-4 absolute inset-0 flex flex-col items-center text-center justify-center z-10 ">
-              <h1 className="text-white text-4xl font-bold">Ready to Accelerate Your Career ?</h1>
-              <p className="mx-auto text-xl  text-primary">
+            <div className="p-4 absolute inset-0 flex flex-col items-center text-center justify-center z-10">
+              <h1 className="text-white text-4xl font-bold">Ready to Accelerate Your Career?</h1>
+              <p className="mx-auto text-xl text-primary">
                 Join thousands of professionals who are advancing their careers
               </p>
               <Link href="">
@@ -253,7 +307,7 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          </motion.div>
+        </motion.div>
       </section>
     </div>
   );
