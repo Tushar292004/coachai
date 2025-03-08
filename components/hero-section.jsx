@@ -66,7 +66,7 @@ const HeroSection = () => {
                 <div data-aos="fade-up">
                     <h1 className="gradient-title text-4xl font-semibold mt-24">
                         Unleash the power of <br />
-                        <span className="text-4xl md:text-[6rem] mt-1 leading-none">
+                        <span className="text-3xl md:text-[6rem] mt-1 leading-none">
                             <GradientText
                                 colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
                                 animationSpeed={8}
