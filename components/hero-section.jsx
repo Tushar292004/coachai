@@ -44,7 +44,7 @@ const HeroSection = () => {
                     transition={{ duration: 0.8 }}
                     className="text-center"
                 >
-                    <div className='space-y-6 mx-auto'>
+                    <div className='space-y-6 mx-auto p-4'>
                         <h1 className='text-3xl font-bold md:text-6xl lg:text-7xl xl:text-8xl '>
                             Your AI Career Coach For <br />Professional Success
                         </h1>
