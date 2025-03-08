@@ -20,11 +20,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider appearance={
-      {
-        baseTheme:dark,
-      }
-    }>
+    <ClerkProvider appearance={{
+      baseTheme: [dark],
+      variables: {
+        colorPrimary: '#00D8FF',
+        colorText: "#00D8FF",
+        colorTextSecondary:"white"
+      },
+    }}>
       <html lang="en" suppressHydrationWarning>
         <body
           className={`${dmSans.className}`}

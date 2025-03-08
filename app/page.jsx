@@ -106,7 +106,8 @@ export default function Home() {
 
       {/* Home Section */}
       <div className="absolute inset-0 -z-10">
-        <Aurora
+        <Aurora 
+          priority
           colorStops={["#00D8FF", "#16567E", "#00D8FF"]}
           blend={1}
           amplitude={isMobile ? 1 : 2} // Reduced animation complexity on mobile
@@ -117,7 +118,7 @@ export default function Home() {
 
       {/* Feature Section */}
       <section className="w-full pb-12 bg-background" id="features">
-        <div className="container mx-auto px-4 md:px-6">
+        <div className="container mx-auto px-4 md:px-6 mb-12">
           <h2 className="text-4xl font-bold tracking-tighter text-center mb-12 gradient-title">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -154,11 +155,9 @@ export default function Home() {
             })}
           </div>
         </div>
-      </section>
-
-      {/* Statstic Section */}
-      <section className="relative rounded-md antialiased w-full py-12 md:py-24 overflow-hidden" id="statistics">
-        <div className="container mx-auto px-4 md:px-6 flex items-center justify-center">
+          
+        {/* Statstic Section */}
+        <div className="container mx-auto px-4 md:px-6 flex items-center justify-center py-12  mt-12">
           <div className="flex md:flex-row flex-col gap-6 justify-between items-center text-center w-[80%] mx-auto">
             <div data-aos="fade-up" data-aos-delay="100" data-aos-duration={isMobile ? 400 : 700} className="flex flex-col items-center justify-center space-y-2">
               <h3 className="text-5xl font-bold gradient-title">50+</h3>
