@@ -139,7 +139,7 @@ export default function Home() {
             >
               <GradientText
                 colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-                animationSpeed={isMobile ? 2 : 3} // Slowed animation on mobile
+                animationSpeed={8} 
                 showBorder={false}
                 className="custom-class overflow-visible"
               >Powerful Features for Your Career Growth</GradientText>
@@ -204,7 +204,7 @@ export default function Home() {
               <h2 className="text-4xl font-bold mb-4">
                 <GradientText
                   colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-                  animationSpeed={isMobile ? 2 : 3}
+                  animationSpeed={8}
                   showBorder={false}
                   className="custom-class overflow-visible"
                 >How It Works</GradientText>
@@ -240,7 +240,7 @@ export default function Home() {
             >
               <GradientText
                 colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-                animationSpeed={isMobile ? 2 : 3}
+                animationSpeed={8}
                 showBorder={false}
                 className="custom-class overflow-visible"
               >What Our Users Say</GradientText>
@@ -264,7 +264,7 @@ export default function Home() {
               <h2 className="text-4xl font-bold mb-4">
                 <GradientText
                   colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-                  animationSpeed={isMobile ? 2 : 3}
+                  animationSpeed={8}
                   showBorder={false}
                   className="custom-class overflow-visible"
                 >Frequently Asked Questions</GradientText>

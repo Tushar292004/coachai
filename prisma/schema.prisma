@@ -12,3 +12,129 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+
+//create a model
+
+//User Tabel
+model User{
+  id       String   @id @default(uuid())  //global unique identifier based on UUID
+  clerkUserId  String @unique  //clerk user id
+  email String @unique    // unique for each user
+  name String?  // ?: optional fields
+  imageUrl String? 
+  industry String? //Combined industry-subindustry (eg: "tech-software-development")
+
+  industryInsight IndustryInsight? @relation(fields: [industry], references:[industry]) // basically we relating the industry field of user and insight table
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  //profile fields
+  bio String?
+  experience Int? //Year of Experience
+  skills String[] //Array of skills
+
+  //ai feature log  - all related to seprate tables
+  assessments Assessment[]
+  resume Resume?
+  coverLetter CoverLetter[]
+}
+
+//Industry Table
+model IndustryInsight{
+  id String @id @default(cuid())
+  industry String @unique //The industry this data belongs to (eg: "tech-software-development")
+
+  //User in this industry
+  users User[]
+
+  //Salary data
+  salaryRanges Json[] //Array of {role: string, min: float, max:float, location:string?}
+
+  //Industry trends
+  growthRate Float //Industry growth rate
+  demandLevel DemandLevel //high, medium, low
+  topSkills String[] //Most in-demand skills
+
+  //Market Condition
+  marketOutLook MarketOutLook //positive, netural, negative
+  keyTrends String[] //Array of current industry trends
+
+  //Learning suggestions
+  recommendedSkills String[] //Skills recommended for the industry
+
+  lastUpdated DateTime @default(now())
+  nextUpdate DateTime //Scheduled update time
+
+  @@index([industry])
+}
+
+// creating enum for special fields
+
+enum DemandLevel {
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum MarketOutLook {
+  POSITIVE
+  NEUTRAL
+  NEGATIVE
+}
+
+//Assessment table
+model Assessment{
+  id String @id @default(cuid())
+  userId String
+
+  user User @relation(fields: [userId], references: [id]) //userId of assessment table refference id of User table
+
+  //assessment fields
+  quizScore Float //overall quiz score
+  questions Json[] //Array of {question, answers, UserAnswer, isCorrect}
+  category String //"technical", "behavioral" etc
+  improvementTip String? //AI-generated Improvement Tip
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId]) //index on the bases of unique userId
+} 
+
+//Resume table
+model Resume{
+  id String @id @default(cuid())
+  userId String @unique //one resume per user
+
+  user User @relation(fields: [userId], references: [id]) //userId of resume table refference id of User table
+
+  //resume fields
+  content String @db.Text //markdown content
+  atsScore Float?
+  feedback String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+}
+
+//CoverLetter table
+model CoverLetter{
+  id String @id @default(cuid())
+  userId String
+
+  user User @relation(fields: [userId], references: [id]) //userId of coverletter table refference id of User table
+
+  //coverletter fields
+  content String @db.Text //markdown content
+  jobDescription String?
+  companyName String //Name of the company applying to
+  jobTitle String //Position applying for
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId]) //index on the bases of unique userId
+}
