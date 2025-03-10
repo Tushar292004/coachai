@@ -12,7 +12,7 @@ export default async function Header (){
     await checkUser()
     return (
         <header className='fixed top-0 w-full border-b bg-background/80 backdrop-blur-md z-50 supports-[backdrop-filter]:bg-background/60'>
-            <nav className='container mx-auto px-4 h-16 flex items-center justify-between '>
+            <nav className='px-4 h-16 flex items-center justify-between '>
                 <Link href="/" className='flex gap-2 items-center'>
                     <p className='text-2xl font-md'>Coach</p>
                     <RotatingText
