@@ -117,10 +117,10 @@ export default function Home() {
         style={{ scaleX, transformOrigin: "0%" }}
       />
 
-      <div class="aurora-container">
-        <div class="aurora-blob"></div>
-        <div class="aurora-blob-2"></div>
-        <div class="aurora-content">
+      <div className="aurora-container">
+        <div className="aurora-blob"></div>
+        <div className="aurora-blob-2"></div>
+        <div className="aurora-content">
           {/* Home Section */}
           <HeroSection />
         </div>
