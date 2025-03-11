@@ -19,6 +19,7 @@ import { useEffect, useRef, useState } from "react";
 import { faqs } from "@/data/faqs";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import Lenis from '@studio-freight/lenis';
 
 export default function Home() {
   const scrollRef = useRef(null);
@@ -42,7 +43,47 @@ export default function Home() {
       mirror: true,
       offset: 50
     });
+
+    // Initialize Lenis with mobile-optimized settings
+    const lenis = new Lenis({
+      duration: isMobile ? 0.8 : 1.2, // Reduced duration on mobile
+      easing: (t) => (isMobile ?
+        // Simpler easing function for mobile
+        Math.min(1, 1.001 - Math.pow(2, -10 * t)) :
+        // Original easing for desktop
+        Math.min(1, 1.001 - Math.pow(2, -10 * t))
+      ),
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smooth: true,
+      mouseMultiplier: 1,
+      smoothTouch: false, // Disable smooth touch on mobile for better performance
+      touchMultiplier: 1.5, // Reduced from 2
+      infinite: false,
+      // Throttle to reduce calculations on mobile
+      wheelEventsTarget: isMobile ? document.documentElement : window,
+    });
+
+    // More efficient RAF implementation
+    let rafId = null;
+    function raf(time) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+
+    rafId = requestAnimationFrame(raf);
+
+    // Clean up
+    return () => {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
+      lenis.destroy();
+      window.removeEventListener('resize', checkMobile);
+    };
   }, [isMobile]);
+
+
 
   // Progress bar for scroll
   const { scrollYProgress } = useScroll();
@@ -100,7 +141,7 @@ export default function Home() {
             >
               <GradientText
                 colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-                animationSpeed={8} 
+                animationSpeed={8}
                 showBorder={false}
                 className="custom-class overflow-visible"
               >Powerful Features for Your Career Growth</GradientText>
