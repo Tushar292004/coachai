@@ -61,7 +61,7 @@ export function MagicCard({
   return (
     (<div
       ref={cardRef}
-      className={cn("group relative rounded-[inherit] z-10", className)}>
+      className={cn("group relative rounded-[inherit]", className)}>
       <motion.div
         className="pointer-events-none absolute inset-0 rounded-[inherit] bg-border duration-300 group-hover:opacity-100"
         style={{
@@ -69,7 +69,7 @@ export function MagicCard({
           radial-gradient(${gradientSize}px circle at ${mouseX}px ${mouseY}px,
           ${gradientFrom}, 
           ${gradientTo}, 
-          hsl(var(--border)) 100%
+          var(--border) 100%
           )
           `,
         }} />

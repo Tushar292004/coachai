@@ -187,7 +187,7 @@ export default function Home() {
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration={isMobile ? 400 : 700} className="flex flex-col items-center justify-center space-y-2">
               <h3 className="text-5xl font-bold gradient-title">24/7</h3>
-              <p className="text-muted-foreground text-xl">AI Support</p>
+              <p className="text-muted-foreground text-xl">AI Support Services</p>
             </div>
           </div>
         </div>
