@@ -179,9 +179,12 @@ export default function Home() {
               return (
                 <div data-aos="fade-up" data-aos-delay={delay} key={`work-${index}`}>
                   <NeonGradientCard className="flex max-w-sm items-center justify-center text-center flex-col space-y-2">
+                    <div className="flex items-center justify-center flex-col gap-2">
                     <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">{item.icon}</div>
                     <h3 className="font-semibold text-xl">{item.title}</h3>
                     <p className="text-muted-foreground">{item.description}</p>
+                      </div>
+                      
                   </NeonGradientCard>
                 </div>
               );

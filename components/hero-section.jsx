@@ -46,7 +46,7 @@ const HeroSection = () => {
                     className="text-center"
                 >
                     <div className='space-y-2 mx-auto '>
-                        <h1 className='text-4xl font-bold md:text-6xl lg:text-7xl xl:text-8xl gradient-title'>
+                        <h1 className='text-[1.8rem] font-bold md:text-6xl lg:text-7xl xl:text-8xl gradient-title'>
                             Your AI Career Coach For <br />Professional Success
                         </h1>
                         <p className='mx-auto max-w-[600px] text-muted-foreground md:text-2xl px-4'>Advance your career with personalized guidance, interview prep, and AI-powered tools for job success</p>
@@ -87,7 +87,7 @@ const HeroSection = () => {
                                 width={1280}
                                 height={720}
                                 alt="Dashboard Preview"
-                                className="rounded-lg shadow-2xl border mx-auto border-[#6C6C6C] p-2  bg-[#222222]"
+                                className="rounded-lg shadow-2xl border mx-auto border-[#6C6C6C]  "
                                 priority
                             />
                         </div>
