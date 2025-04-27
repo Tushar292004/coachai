@@ -4,7 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/header"
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
-
+import { Analytics } from "@vercel/analytics/react"
 import { DM_Sans } from 'next/font/google';
 
 const dmSans = DM_Sans({
@@ -42,6 +42,7 @@ export default function RootLayout({ children }) {
             <Header />
             <main className="min-h-screen">
               {children}
+              <Analytics />
             </main>
             {/* footer */}
             <footer className=" border-t py-6">

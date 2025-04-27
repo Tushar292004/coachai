@@ -21,6 +21,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Lenis from '@studio-freight/lenis';
 
+
 export default function Home() {
   const scrollRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
