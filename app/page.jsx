@@ -101,6 +101,13 @@ export default function Home() {
 
   return (
     <div className="" ref={scrollRef}>
+      <ClickSpark
+              sparkColor='#fff'
+              sparkSize={isMobile ? 5 : 10}
+              sparkRadius={isMobile ? 10 : 15}
+              sparkCount={isMobile ? 4 : 8}
+              duration={isMobile ? 300 : 400}
+            >
       {/* <div className="grid-background"></div> */}
       {/* <div className="aurora-bg"></div> */}
 
@@ -279,13 +286,6 @@ export default function Home() {
             </motion.div>
           </div>
           <div className="mx-auto max-w-6xl">
-            <ClickSpark
-              sparkColor='#fff'
-              sparkSize={isMobile ? 5 : 10}
-              sparkRadius={isMobile ? 10 : 15}
-              sparkCount={isMobile ? 4 : 8}
-              duration={isMobile ? 300 : 400}
-            >
               <Accordion type="single" collapsible>
                 {visibleFaqs.map((faq, index) => {
                   const delay = isMobile ? 0 : index * 50;
@@ -301,7 +301,7 @@ export default function Home() {
                   );
                 })}
               </Accordion>
-            </ClickSpark>
+            
           </div>
         </div>
       </section>
@@ -339,6 +339,7 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
+      </ClickSpark>
     </div>
   );
 }

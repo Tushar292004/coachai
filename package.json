@@ -45,6 +45,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.56.1",
+    "react-toastify": "^11.0.5",
     "simplex-noise": "^4.0.3",
     "sonner": "^2.0.1",
     "tailwind-merge": "^3.0.2",

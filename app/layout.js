@@ -6,6 +6,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { Analytics } from "@vercel/analytics/react"
 import { DM_Sans } from 'next/font/google';
+import { toast, ToastContainer } from "react-toastify";
 
 const dmSans = DM_Sans({
   subsets: ['latin'], // Choose subsets as per requirement
@@ -44,6 +45,7 @@ export default function RootLayout({ children }) {
               {children}
               <Analytics />
             </main>
+            <ToastContainer />
             {/* footer */}
             <footer className=" border-t py-6">
               <div className="container mx-auto px-4 text-center text-gray-200 font-medium">

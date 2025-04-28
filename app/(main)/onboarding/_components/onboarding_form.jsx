@@ -1,10 +1,14 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { onboardingSchema } from '@/app/lib/schema'
 import { useRouter } from 'next/navigation'
-import { MagicCard } from '@/components/magicui/magic-card'
+import { toast } from "react-toastify";
+import { NeonGradientCard } from '@/components/magicui/neon-gradient-card'
+import useFetch from '@/hooks/use-fetch'
+import { updateUser } from '@/action/user'
+import { Loader2 } from 'lucide-react'
 //shadcn imports 
 import { Button } from "@/components/ui/button";
 import {
@@ -27,7 +31,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Textarea } from '@/components/ui/textarea'
-import { NeonGradientCard } from '@/components/magicui/neon-gradient-card'
+
 
 
 
@@ -37,6 +41,12 @@ const OnboardingForm = ({ industries }) => {
   const [selectedIndustry, setSelectedIndustry] = useState(null)
   const router = useRouter(); // useRouter is used to navigate to different pages in the app
 
+  const {
+    loading: updateLoading,
+    fn: updateUserFn,
+    data: updateResult,
+  } = useFetch(updateUser)
+
   //register : 
   const { register, handleSubmit, formState: { errors, }, setValue, watch, } = useForm({
     resolver: zodResolver(onboardingSchema) //zodResolver is used to validate the form data using zod schema
@@ -44,8 +54,27 @@ const OnboardingForm = ({ industries }) => {
 
   // handleSubmit is used to handle the form submission
   const onSubmit = async (value) => {
-    console.log(value);
-   }
+    updateUserFn
+    try {
+      console.log(value);
+      const formattedIndustry = `${value.industry} - ${value.subIndustry.toLowerCase().replace(/ /g, "-")}`; // format the industry and sub-industry
+
+      await updateUserFn({
+        ...value,
+        industry: formattedIndustry,
+      })
+    } catch (error) {
+       console.log("Onboarding error: ", error);
+    }
+   };
+
+   useEffect(()=> {
+      if (updateResult?.success && !updateLoading){
+        toast.success(`Profile completed successfully`, { autoClose: 3000, });
+        router.push("/dashboard"); // redirect to dashboard after successful profile completion
+        router.refresh(); // refresh the page to get the updated data
+      }
+   }, [updateLoading, updateResult])
 
   const watchIndustry = watch("industry"); // watch is used to get the value of the industry field
 
@@ -150,13 +179,22 @@ const OnboardingForm = ({ industries }) => {
               </div>
 
               {/* submit button */}
-              <Button variant="" type="submit" className="w-full">Complete Profile</Button>
+              <Button variant="" type="submit" className="w-full" disabled={updateLoading}>
+                {updateLoading ? (
+                  <>
+                  <Loader2 className="animate-spin mr-2 h-4 w-4" />
+                  Saving...
+                  </>
+                ): ("Complete Profile")}
+              </Button>
 
             </form>
           </CardContent>
       </NeonGradientCard>
     </div>
   )
+
+  
 }
 
 export default OnboardingForm
