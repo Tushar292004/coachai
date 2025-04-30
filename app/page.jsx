@@ -58,7 +58,7 @@ export default function Home() {
       gestureDirection: 'vertical',
       smooth: true,
       mouseMultiplier: 1,
-      smoothTouch: false, // Disable smooth touch on mobile for better performance
+      smoothTouch: true, // Disable smooth touch on mobile for better performance
       touchMultiplier: 1.5, // Reduced from 2
       infinite: false,
       // Throttle to reduce calculations on mobile

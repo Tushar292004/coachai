@@ -58,7 +58,7 @@ model IndustryInsight{
   topSkills String[] //Most in-demand skills
 
   //Market Condition
-  marketOutLook MarketOutLook //positive, netural, negative
+  marketOutlook MarketOutlook //positive, netural, negative
   keyTrends String[] //Array of current industry trends
 
   //Learning suggestions
@@ -73,15 +73,15 @@ model IndustryInsight{
 // creating enum for special fields
 
 enum DemandLevel {
-  HIGH
-  MEDIUM
-  LOW
+  High
+  Medium
+  Low
 }
 
-enum MarketOutLook {
-  POSITIVE
-  NEUTRAL
-  NEGATIVE
+enum MarketOutlook {
+  Positive
+  Neutral
+  Negative
 }
 
 //Assessment table

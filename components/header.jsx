@@ -59,7 +59,7 @@ export default async function Header (){
                             </DropdownMenuContent>
                         </DropdownMenu>
                         
-                        <Link href={"/dashbaord"}>
+                        <Link href={"/dashboard"}>
                             <Button variant="outline" className="">
                                 <LayoutDashboard className='h-4 w-4' />
                                 <span className='hidden md:inline-flex items-center gap-2'>  Industry Insights </span>

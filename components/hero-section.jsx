@@ -49,7 +49,7 @@ const HeroSection = () => {
                         <h1 className='text-[1.8rem] font-bold md:text-6xl lg:text-7xl xl:text-8xl gradient-title'>
                             Your AI Career Coach For <br />Professional Success
                         </h1>
-                        <p className='mx-auto max-w-[600px] text-muted-foreground md:text-2xl px-4'>Advance your career with personalized guidance, interview prep, and AI-powered tools for job success</p>
+                        <p className='mx-auto max-w-[600px] text-muted-foreground md:text-2xl px-8'>Advance your career with personalized guidance, interview prep, and AI-powered tools for job success</p>
                     </div>
                     <div className='flex justify-center space-x-4 mt-12'>
                         <Link href='/dashboard'>
