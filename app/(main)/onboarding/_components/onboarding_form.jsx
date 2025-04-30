@@ -31,7 +31,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Textarea } from '@/components/ui/textarea'
-
+import { motion, useScroll, useSpring } from "framer-motion";
 
 
 
@@ -79,7 +79,13 @@ const OnboardingForm = ({ industries }) => {
   const watchIndustry = watch("industry"); // watch is used to get the value of the industry field
 
   return (
-    <div className="flex bg-background justify-center items-center">
+    <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: false }}
+    transition={{ duration: 0.8 }}
+   className="flex bg-background justify-center items-center">
+
       <NeonGradientCard className="p-0  max-w-lg md:max-w-2xl my-10 mx-4 w-full ">
         {/* <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} /> */}
           <CardHeader className=" bg-[#171717] flex flex-col items-start justify-start p-4">
@@ -191,7 +197,7 @@ const OnboardingForm = ({ industries }) => {
             </form>
           </CardContent>
       </NeonGradientCard>
-    </div>
+    </motion.div>
   )
 
   
