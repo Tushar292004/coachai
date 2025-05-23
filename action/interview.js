@@ -120,7 +120,7 @@ export async function saveQuizResult(questions, answers,score){
 
       Based on these mistakes, provide a concise, specific improvement tip.
       Focus on the knowledge gaps revealed by these wrong answers.
-      Keep the response under 2 sentences and make it encouraging.
+      Keep the response under 3 sentences and make it encouraging.
       Don't explicitly mention the mistakes, instead focus on what to learn/practice.
     `;    
     
@@ -133,8 +133,7 @@ export async function saveQuizResult(questions, answers,score){
 
         // Get the text content of the response
         improvementTip = response.text().trim();
-        
-        
+               
     } catch (error) {
         console.error("Error generating improvement tip:", error);
         throw new Error("Failed to generate improvement tip");

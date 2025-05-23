@@ -14,6 +14,8 @@ import { BarLoader } from "react-spinners";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import QuizResult from "./quiz-results";
+
 
 const Quiz = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -41,11 +43,13 @@ const Quiz = () => {
     }, [quizData]);
 
     const handleAnswer = (answer) => {
+        //making shallow copy of answers with existing answers 
         const newAnswers = [...answers];
         newAnswers[currentQuestion] = answer;
         setAnswers(newAnswers);
     };
 
+    //next question button
     const handleNext = () => {
         if (currentQuestion < quizData.length - 1) {
             setCurrentQuestion(currentQuestion + 1);
@@ -55,6 +59,7 @@ const Quiz = () => {
         }
     };
 
+    //calculating the score
     const calculateScore = () => {
         let correct = 0;
         answers.forEach((answer, index) => {
@@ -65,6 +70,7 @@ const Quiz = () => {
         return (correct / quizData.length) * 100;
     };
 
+    //finishing the quiz here 
     const finishQuiz = async () => {
         const score = calculateScore();
         try {
@@ -74,7 +80,8 @@ const Quiz = () => {
             toast.error(error.message || "Failed to save quiz results");
         }
     };
-
+    
+    //Just reseting the all fields related to quiz
     const startNewQuiz = () => {
         setCurrentQuestion(0);
         setAnswers([]);
@@ -83,11 +90,17 @@ const Quiz = () => {
         setResultData(null);
     };
 
-
-
-
     if (generatingQuiz) {
         return <BarLoader className="mt-4" width={"100%"} color="gray" />;
+    }
+
+    //show result if quiz is completed
+    if (resultData) {
+        return(
+            <div className="mx-2">
+                <QuizResult result={resultData} onStartNew={startNewQuiz} />
+            </div>
+        )
     }
 
     if (!quizData) {
