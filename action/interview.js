@@ -158,3 +158,42 @@ export async function saveQuizResult(questions, answers,score){
 
     }
 }
+
+
+//server action for getting the result of quiz
+export async function getAssessments(){
+    //checking weather user is already logged in or not
+    const { userId } = await auth();
+    if (!userId) {
+        throw new Error("User not logged in (Unauthorized)");
+    }
+
+
+    //checking if user is registered inside the database or not
+    const user = await db.user.findUnique({
+        //find the using clerk user Id
+        where: {
+            clerkUserId: userId,
+        }
+    });
+    if (!user) {
+        throw new Error("User not found (Unregistered)");
+    }
+
+    //fetching the assessment data from the database
+    try {
+        const assessments = await db.assessment.findMany({
+            where: {
+                userId: user.id,
+            },
+            orderBy:{
+                createdAt: "asc",
+            }
+        })
+        
+        return assessments;
+    } catch (error) {
+        console.error("Error getting quiz result:", error);
+        throw new Error("Failed to get quiz result");
+    }
+}

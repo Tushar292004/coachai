@@ -13,7 +13,7 @@ const QuizResult = ({result, hideStartNew = false, onStartNew}) => {
         Quiz Results
       </h1>
 
-      <CardContent>
+      <CardContent className={"space-y-6"}>
         {/* Score Board */}
         <div className="text-center space-y-2 mb-2">
             <h3 className="text-2xl font-bold">{result.quizScore.toFixed(1)}%</h3>
@@ -56,7 +56,7 @@ const QuizResult = ({result, hideStartNew = false, onStartNew}) => {
 
       {!hideStartNew && (
         <CardFooter>
-            <Button onClick={onStartNew} className={"w-full"}>
+            <Button onClick={onStartNew} className={"w-full mt-4"}>
                 Start New Quiz
             </Button>
         </CardFooter>
