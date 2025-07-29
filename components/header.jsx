@@ -50,7 +50,7 @@ export default async function Header() {
                                 </SheetTrigger>
                                 <SheetContent className={""}>
                                     <SheetHeader>
-                                        <SheetTitle className={"text-2xl text-[#00d8ff]"}>Navigation Bar</SheetTitle>
+                                        <SheetTitle className={"text-2xl text-[#00d8ff]"}>Side Bar</SheetTitle>
                                     </SheetHeader>
                                     <Separator />
                                     <div className='flex flex-col space-y-4  mt-4 text-xl'>

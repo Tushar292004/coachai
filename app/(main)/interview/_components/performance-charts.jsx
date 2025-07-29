@@ -30,7 +30,7 @@ const PerformanceChart = ({ assesments }) => {
                 transition={{ duration: 0.8 }}
             >
                 {/* Performance Chart  */}
-                <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 p-4 flex flex-col" spotlightColor="rgba(0, 229, 255, 0.2)">
+                <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 md:p-4 p-2 flex flex-col" spotlightColor="rgba(0, 229, 255, 0.2)">
                     <CardHeader className="">
                         <CardTitle className="text-2xl">Performance Trend</CardTitle>
                         <CardDescription>Displaying performance trend over time in quizes</CardDescription>

@@ -24,7 +24,7 @@ const QuizList = ({ assesments }) => {
             transition={{ duration: 0.8 }}
         >
             {/* Average Score */}
-            <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 p-4" spotlightColor="rgba(0, 229, 255, 0.2)">
+            <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 md:p-4 p-2" spotlightColor="rgba(0, 229, 255, 0.2)">
                 <CardHeader className="flex flex-row items-center justify-between">
                     <div>
                         <CardTitle className="text-md font-medium">Recent Quizes</CardTitle>

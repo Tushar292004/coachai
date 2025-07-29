@@ -41,7 +41,7 @@ const StatsCards = ({assesments}) => {
       >
         <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
           {/* Average Score */}
-          <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 p-4" spotlightColor="rgba(0, 229, 255, 0.2)">
+          <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 md:p-4 p-2" spotlightColor="rgba(0, 229, 255, 0.2)">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-md font-medium">Average Score</CardTitle>
               <Trophy className={`h-4 w-4 text-muted-foreground`} />
@@ -55,7 +55,7 @@ const StatsCards = ({assesments}) => {
           </SpotlightCard>
 
           {/* Questions Practised */}
-          <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 p-4" spotlightColor="rgba(0, 229, 255, 0.2)">
+          <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 md:p-4 p-2" spotlightColor="rgba(0, 229, 255, 0.2)">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-md font-medium">Questions Practised</CardTitle>
               <Brain className={`h-4 w-4 text-muted-foreground`} />
@@ -69,7 +69,7 @@ const StatsCards = ({assesments}) => {
           </SpotlightCard>
 
           {/* Latest Score */}
-          <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 p-4" spotlightColor="rgba(0, 229, 255, 0.2)">
+          <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 md:p-4 p-2" spotlightColor="rgba(0, 229, 255, 0.2)">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-md font-medium">Latest Quiz Score</CardTitle>
               <LineChart className={`h-4 w-4 text-muted-foreground`} />

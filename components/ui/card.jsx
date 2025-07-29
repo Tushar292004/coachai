@@ -24,7 +24,7 @@ function CardHeader({
   return (
     (<div
       data-slot="card-header"
-      className={cn("flex flex-col gap-1.5 px-6", className)}
+      className={cn("flex flex-col gap-1.5 md:px-6 px-2", className)}
       {...props} />)
   );
 }
@@ -57,7 +57,7 @@ function CardContent({
   className,
   ...props
 }) {
-  return (<div data-slot="card-content" className={cn("px-6", className)} {...props} />);
+  return (<div data-slot="card-content" className={cn("md:px-6 px-2", className)} {...props} />);
 }
 
 function CardFooter({
@@ -67,7 +67,7 @@ function CardFooter({
   return (
     (<div
       data-slot="card-footer"
-      className={cn("flex items-center px-6", className)}
+      className={cn("flex items-center md:px-6 px-2", className)}
       {...props} />)
   );
 }
