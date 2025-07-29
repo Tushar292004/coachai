@@ -82,7 +82,7 @@ const DashboardView = ({ insights }) => {
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
 
           {/* Market outlook */}
-          <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 p-4" spotlightColor="rgba(0, 229, 255, 0.2)">
+          <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 md:p-4 p-2" spotlightColor="rgba(0, 229, 255, 0.2)">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-md font-medium">Market Outlook</CardTitle>
               <OutlookIcon className={`h-5 w-5 ${OutlookColor}`} />
@@ -96,7 +96,7 @@ const DashboardView = ({ insights }) => {
           </SpotlightCard>
 
           {/* Industry Growth*/}
-          <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 p-4" spotlightColor="rgba(0, 229, 255, 0.2)">
+          <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 md:p-4 p-2" spotlightColor="rgba(0, 229, 255, 0.2)">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-md font-medium">Industry Growth</CardTitle>
               <Factory className={`h-5 w-5 text-muted-foreground`} />
@@ -110,7 +110,7 @@ const DashboardView = ({ insights }) => {
           </SpotlightCard>
 
           {/* Demand Level */}
-          <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 p-4" spotlightColor="rgba(0, 229, 255, 0.2)">
+          <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 md:p-4 p-2" spotlightColor="rgba(0, 229, 255, 0.2)">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-md font-medium">Demand Level</CardTitle>
               <BriefcaseIcon className={`h-5 w-5 text-muted-foreground`} />
@@ -124,7 +124,7 @@ const DashboardView = ({ insights }) => {
           </SpotlightCard>
 
           {/* Top Skills */}
-          <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 p-4" spotlightColor="rgba(0, 229, 255, 0.2)">
+          <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 md:p-4 p-2" spotlightColor="rgba(0, 229, 255, 0.2)">
             <CardHeader className="flex flex-row items-center justify-between space-y- pb-2">
               <CardTitle className="text-md font-medium">Top Skills</CardTitle>
               <Brain className={`h-5 w-5 text-[#00D8FF]`} />
@@ -147,7 +147,7 @@ const DashboardView = ({ insights }) => {
         transition={{ duration: 0.8 }}
       >
         {/* Salary Ranges  */}
-        <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 p-4 flex flex-col" spotlightColor="rgba(0, 229, 255, 0.2)">
+        <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 md:p-4 p-2 flex flex-col" spotlightColor="rgba(0, 229, 255, 0.2)">
           <CardHeader className="">
             <CardTitle className="text-2xl">Salary Ranges by Role</CardTitle>
             <CardDescription>Displaying minimum, median, and mazimum salaries (in thousands)</CardDescription>
@@ -194,7 +194,7 @@ const DashboardView = ({ insights }) => {
         viewport={{ once: false }}
         transition={{ duration: 0.8 }} className="grid grid-cols-1 md:grid-cols-2 gap-4">
         
-        <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 p-4" spotlightColor="rgba(0, 229, 255, 0.2)">
+        <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 md:p-4 p-2" spotlightColor="rgba(0, 229, 255, 0.2)">
           <CardHeader >
             <CardTitle className="text-2xl">Key Industry Trends</CardTitle>
             <CardDescription>Stay ahead with the latest trends in your industry</CardDescription>
@@ -212,7 +212,7 @@ const DashboardView = ({ insights }) => {
           </CardContent>
         </SpotlightCard>
 
-        <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 p-4" spotlightColor="rgba(0, 229, 255, 0.2)">
+        <SpotlightCard className="border hover:border-[#00D8FF] transition-colors duration-300 md:p-4 p-2" spotlightColor="rgba(0, 229, 255, 0.2)">
           <CardHeader >
             <CardTitle className={"text-2xl"}>Recommended Skills </CardTitle>
             <CardDescription>Skills to consider developing </CardDescription>
