@@ -96,9 +96,9 @@ const OnboardingForm = ({ industries }) => {
           </CardHeader>
           <CardContent className="p-4 bg-[#171717]">
             <form className='space-y-4' onSubmit={handleSubmit(onSubmit)}>
-              <div className='flex gap-4 justify-start'>
+              <div className='flex md:flex-row flex-col md:gap-4 gap-2 justify-start'>
                 {/* Industries */}
-                <div className="space-y-2">
+                <div className="md:space-y-2 space-y-1">
                   <Label htmlFor="industry" className="mx-1 text-md">Industry</Label>
                   <Select className=""
                     onValueChange={(value) => {
@@ -123,7 +123,7 @@ const OnboardingForm = ({ industries }) => {
                 {/* only after industryb is selected subindustry will be visible */}
                 {watchIndustry &&
                   //  SubIndustry 
-                  <div className="space-y-2">
+                  <div className="md:space-y-2 space-y-1">
                     <Label htmlFor="subIndustry" className="mx-1 text-md">Specialization</Label>
                     <Select className=""
                       onValueChange={(value) => {
@@ -145,7 +145,7 @@ const OnboardingForm = ({ industries }) => {
 
 
               {/* experience */}
-              <div className="space-y-2">
+              <div className="md:space-y-2 space-y-1">
                 <Label htmlFor="experience" className="mx-1 text-md">Years of Experience</Label>
                 <Input id="experience"
                   type="number" min="0" max="50"
@@ -158,7 +158,7 @@ const OnboardingForm = ({ industries }) => {
               </div>
 
               {/* skills */}
-              <div className="space-y-2">
+              <div className="md:space-y-2 space-y-1">
                 <Label htmlFor="experience" className="mx-1 text-md">Skills</Label>
                 <Input id="skills" 
                   placeholder="e.g., Python, Javascrip, UI/UX"
@@ -173,7 +173,7 @@ const OnboardingForm = ({ industries }) => {
               </div>
 
               {/* Professional Bio */}
-              <div className="space-y-2">
+              <div className="md:space-y-2 space-y-1">
                 <Label htmlFor="bio" className="mx-1 text-md">Professional Bio</Label>
                 <Textarea id="bio"
                   className={"h-32"}

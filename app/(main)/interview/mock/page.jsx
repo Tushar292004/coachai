@@ -7,7 +7,7 @@ import Quiz from '../_components/quiz'
 
 const MockInterviewPage = () => {
   return (
-    <div className='px-5'>
+    <div className=''>
       <div className='flex flex-col items-start justify-between mb-3 '>
         <Link href={"/interview"}>
           <Button variant={"link"} className={"gap-2 pl-0"}>

@@ -32,7 +32,7 @@ const QuizList = ({ assesments }) => {
                     </div>
                     <Button onClick={()=> router.push("/interview/mock")}>Start New Quiz</Button>
                 </CardHeader>
-                <CardContent className="mt-4">
+                <CardContent className="mt-2 md:mt-4">
                     <div className="space-y-4">
                         {assesments?.map((assessment, index)=> {
                             return (

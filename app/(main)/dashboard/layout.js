@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
                                   colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
                                   animationSpeed={8}
                                   showBorder={false}
-                                  className="text-4xl md:text-6xl  font-bold"
+                                  className="text-3xl md:text-6xl  font-bold"
                                 >Industry Insight</GradientText></h1>
             </div>
             <Suspense fallback={
